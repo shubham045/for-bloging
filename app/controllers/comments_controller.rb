@@ -10,9 +10,13 @@ http_basic_authenticate_with name: "shubham", password: "secret", only: :destroy
 
  	def destroy
  		@article = Article.friendly.find(params[:article_id])
- 		@comment = @article.comments.find(params[:id])
- 		@comment.destroy
-    	redirect_to article_path(@article)
+ 		if current_user == @article.user
+	 		@comment = @article.comments.find(params[:id])
+	 		@comment.destroy
+	    	redirect_to article_path(@article)
+	    else
+	    	redirect_to article_path(@article), notice: "You are not authorized to delete that comment"
+	    end
  	end
 
 

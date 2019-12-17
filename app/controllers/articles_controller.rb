@@ -21,25 +21,17 @@ http_basic_authenticate_with name: "shubham", password: "secret", except: [:inde
 
 	def update	
 	  @article = Article.friendly.find(params[:id])
-	  if @article.user == current_user
-		  if @article.update(article_params)
-		    redirect_to @article
-		  else
-		    render 'edit'
-		  end
-	   else
-	   		redirect_to articles_path, notice: "You are not authorize to edit that"
-	   end
+	  if @article.update(article_params)
+	    redirect_to @article
+	  else
+	    render 'edit'
+	  end
 	end
 
 	def destroy
-		@article = Article.friendly.find(params[:id])
-		if @article.user == current_user
-		  @article.destroy
-		  redirect_to articles_path
-		else
-		  redirect_to articles_path, notice: "You are not authorize to delete that"
-		end
+	  @article = Article.friendly.find(params[:id])
+	  @article.destroy
+	  redirect_to articles_path
 	end
 
 	def show
