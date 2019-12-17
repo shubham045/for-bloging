@@ -13,6 +13,7 @@ gem 'puma', '~> 4.1'
 
 gem 'pry'
 
+gem 'pg'
 
 gem 'friendly_id', '~> 5.2.4'
 
