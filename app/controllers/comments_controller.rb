@@ -8,6 +8,8 @@ http_basic_authenticate_with name: "shubham", password: "secret", only: :destroy
  	   redirect_to article_path(@article)
  	end
 
+
+
  	def destroy
  		@article = Article.friendly.find(params[:article_id])
  		if current_user == @article.user
