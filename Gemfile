@@ -15,6 +15,8 @@ gem 'pry'
 
 gem 'devise'
 
+gem 'authy'
+
 gem 'pg'
 
 gem 'friendly_id', '~> 5.2.4'
