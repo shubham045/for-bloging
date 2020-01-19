@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-http_basic_authenticate_with name: "shubham", password: "secret", except: [:index, :show]
+http_basic_authenticate_with name: "shubham", password: "shubham", except: [:index, :show]
 
 	def new
 	  @article = current_user.articles.new
@@ -10,7 +10,7 @@ http_basic_authenticate_with name: "shubham", password: "secret", except: [:inde
 	  @article = current_user.articles.new(article_params)
 	  if @article.save
 	  	redirect_to articles_path
-	  else	
+	  else
 	  	render 'new'
 	  end
 	end
@@ -19,7 +19,7 @@ http_basic_authenticate_with name: "shubham", password: "secret", except: [:inde
 	  @article = Article.friendly.find(params[:id])
 	end
 
-	def update	
+	def update
 	  @article = Article.friendly.find(params[:id])
 	  if @article.update(article_params)
 	    redirect_to @article
