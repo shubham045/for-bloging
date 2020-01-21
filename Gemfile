@@ -16,6 +16,11 @@ gem 'pry'
 gem 'devise'
 
 gem 'authy'
+# gem 'bootstrap'
+gem 'bootstrap-sass'
+gem 'sassc-rails'
+gem 'jquery-rails'
+
 
 gem 'pg'
 
