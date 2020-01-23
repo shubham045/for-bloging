@@ -5,6 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
+
   def new
     super
   end
@@ -12,10 +13,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], mobile: params[:user][:mobile])
-    # @user.save
+    # @user.saveshow
     respond_to do |format|
       format.js
     end
+  end
+
+  def otp_verification
+    binding.pry
   end
 
   # GET /resource/edit

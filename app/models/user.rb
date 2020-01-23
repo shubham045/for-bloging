@@ -3,13 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :articles
   include Verify
-
+  has_many :articles
+  attr_accessor :otp
   validates :mobile, presence: true
 
   before_validation :check_mobile_number
-
 
   private
   	def check_mobile_number

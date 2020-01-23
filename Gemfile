@@ -21,6 +21,7 @@ gem 'bootstrap-sass'
 gem 'sassc-rails'
 gem 'jquery-rails'
 
+
 gem 'pg'
 
 gem 'friendly_id', '~> 5.2.4'
