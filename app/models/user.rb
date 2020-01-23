@@ -7,8 +7,10 @@ class User < ApplicationRecord
   include Verify
 
   validates :mobile, presence: true
+  validates :name, presence: true
+  validates :email, presence: true
 
-  before_validation :check_mobile_number
+  # before_validation :check_mobile_number
 
   private
   	def check_mobile_number
