@@ -12,8 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    binding.pry
     @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], mobile: params[:user][:mobile])
-    # @user.save
+    @user.save
     respond_to do |format|
       format.js
     end
