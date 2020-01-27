@@ -12,8 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # # POST /resource
   # def create
   #   super
-  #   # @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], mobile: params[:user][:mobile])
-  #   # @user.save
   # end
 
   # GET /resource/edit
