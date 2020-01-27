@@ -1,24 +1,20 @@
 # frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
 
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
-  # POST /resource
-  def create
-    binding.pry
-    @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], mobile: params[:user][:mobile])
-    @user.save
-    respond_to do |format|
-      format.js
-    end
-  end
+  # # POST /resource
+  # def create
+  #   super
+  #   # @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], mobile: params[:user][:mobile])
+  #   # @user.save
+  # end
 
   # GET /resource/edit
   # def edit
