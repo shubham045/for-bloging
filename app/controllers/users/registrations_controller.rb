@@ -5,14 +5,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
 
-  # def new
-  #   super
-  # end
+  def new
+    user = User.new
+  end
 
   # # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(name: params[:user][:name], email: params[:user][:email], mobile: params[:user][:mobile], password: params[:user][:password])
+    if @user.save
+      redirect_to root_path, notice: "successfully SignUp"
+    else
+      render "new"
+    end
+  end
 
   # GET /resource/edit
   # def edit
