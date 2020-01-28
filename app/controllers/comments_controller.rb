@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController
 	
-# http_basic_authenticate_with name: "shubham", password: "shubham", only: :destroy
- 
  	def create
- 	   @article = Article.friendly.find(params[:article_id])
- 	   @comment = @article.comments.create(comment_params)
- 	   redirect_to article_path(@article)
+    @article = Article.friendly.find(params[:article_id])
+    @comment = @article.comments.create(comment_params)
+    redirect_to article_path(@article)
  	end
+
  	def destroy
  		@article = Article.friendly.find(params[:article_id])
  		if current_user == @article.user
@@ -17,7 +16,6 @@ class CommentsController < ApplicationController
 	    	redirect_to article_path(@article), notice: "You are not authorized to delete that comment"
 	    end
  	end
-
 
  private
     def comment_params
