@@ -11,7 +11,7 @@ RSpec.describe CommentsController, type: :controller do
 		@article = FactoryBot.create(:article, user_id: @user.id)
 	end
 
-	context '#create' do
+	describe '#create' do
 		it 'create comment on article' do
 			create_article
 			@comment = FactoryBot.build(:comment, article_id: @article.id)
@@ -20,7 +20,7 @@ RSpec.describe CommentsController, type: :controller do
 		end 
 	end
 
-	context '#destroy' do
+	describe '#destroy' do
 		it 'user can delete their comment' do
 			create_article
 			@comment = FactoryBot.create(:comment, article_id: @article.id)

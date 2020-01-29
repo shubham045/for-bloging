@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Users::RegistrationsController, type: :controller do
 
-	context '#new' do
+	describe '#new' do
 		it 'user sign_up' do
 			@request.env["devise.mapping"] = Devise.mappings[:user]
 			get :new
@@ -10,7 +10,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 		end 
 	end
 
-	context '#create' do
+	describe '#create' do
 		it 'user sign_up' do
 			@request.env["devise.mapping"] = Devise.mappings[:user]
 			user = FactoryBot.build(:user)

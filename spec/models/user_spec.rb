@@ -2,16 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  describe User do
-    context "user association" do
-      it "should have many articles" do
-        t = User.reflect_on_association(:articles)
-        expect(t.macro).to eq(:has_many)
-      end
+  describe "user association" do
+    it "should have many articles" do
+      t = User.reflect_on_association(:articles)
+      expect(t.macro).to eq(:has_many)
     end
   end
 
-  context 'validation test' do
+  describe 'validation test' do
   	it "ensure name presence" do
   		user = User.new(mobile: 889661955, email: "test@gmail.com", password: 123456).save
   		expect(user).to eq(false)

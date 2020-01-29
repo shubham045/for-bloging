@@ -11,13 +11,13 @@ RSpec.describe ArticlesController, type: :controller do
 		sign_in @user
 	end	
 
-	context '#new' do
+	describe '#new' do
 		it 'create object of article' do
 			get :new
 		end 
 	end
 
-	context '#create' do
+	describe '#create' do
 		it 'create article for user' do
 			@article = FactoryBot.build(:article, user_id: @user.id)
 			post :create, params: {article: {:title => @article.title, :text => @article.text}}
@@ -25,14 +25,14 @@ RSpec.describe ArticlesController, type: :controller do
 		end 
 	end
 
-	context '#edit' do
+	describe '#edit' do
 		it 'user can edit their article' do
 			create_article
 			get :edit, params: {id: @article.id}
 		end 
 	end
 
-	context '#update' do
+	describe '#update' do
 		it 'user can update their article' do
 			create_article
 			put :update, params: {id: @article.id, article: {:title => @article.title, :text => @article.text}}
@@ -40,7 +40,7 @@ RSpec.describe ArticlesController, type: :controller do
 		end 
 	end
 
-	context '#delete' do
+	describe '#delete' do
 		it 'user can delete their article' do
 			create_article
 			delete :destroy, params: {id: @article.id}
@@ -48,14 +48,14 @@ RSpec.describe ArticlesController, type: :controller do
 		end 
 	end
 
-	context '#index' do
+	describe '#index' do
 		it 'user can see all the articles' do
 			get :index
 			expect(response.successful?).to be(true)
 		end 
 	end
 
-	context '#show' do
+	describe '#show' do
 		it 'user can see all the articles' do
 			create_article
 			get :show, params: {id: @article.id}

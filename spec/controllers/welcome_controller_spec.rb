@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
 
-	context '#index' do
+	describe '#index' do
 		subject { get :index }
-
 		it 'user can see all the articles' do
 			user = FactoryBot.create(:user)
 			sign_in user
