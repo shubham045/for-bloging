@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # devise_for :users
 
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users, controllers: {registrations: 'users/registrations'}
 
    post '/sign_up/otp', to: 'users/registrations#otp_verification', as: :verify_user_otp
 

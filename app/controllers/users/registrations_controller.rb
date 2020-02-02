@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :user_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -8,10 +7,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include Verify
 
   def new
-    super
+    user = User.new
   end
 
-  # POST /resource
+  # # POST /resource
   def create
     country_code, mobile_number = params[:user][:mobile].split('-')
     # @response = valid_phone_number?(country_code, mobile_number)
