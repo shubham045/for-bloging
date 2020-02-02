@@ -1,2 +1,4 @@
-$("#modal-window").find(".modal-content").html("<%= j (render 'verify_otp') %>");
-$("#modal-window").modal('show');
+<% if @response == true %> 
+  $("#modal-window").find(".modal-content").html("<%= j (render 'verify_otp') %>");
+  $("#modal-window").modal('show');
+<% end %>

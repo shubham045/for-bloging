@@ -15,6 +15,10 @@ http_basic_authenticate_with name: "shubham", password: "shubham", except: [:ind
 	  end
 	end
 
+	# def otp_verification
+	# 	binding.pry
+	# end
+
 	def edit
 	  @article = Article.friendly.find(params[:id])
 	end
@@ -45,7 +49,7 @@ http_basic_authenticate_with name: "shubham", password: "shubham", except: [:ind
 private
 
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :otp)
   end
 
 end

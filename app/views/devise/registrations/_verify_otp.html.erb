@@ -2,20 +2,20 @@
    <h3 id="myModalLabel">Modal header</h3>
  </div>
  <div class="modal-body">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(:anything, url: verify_user_otp_path) do |form| %>
    <div class="field">
-     <%= f.label :mobile %><br />
-     <%= f.text_field :mobile, autofocus: true, placeholder: "+91-9009458216", :readonly => true %>
+     <%= form.label :mobile %><br />
+     <%= form.text_field :mobile, autofocus: true, placeholder: "+91-9009458216", :readonly => true %>
    </div>
 
    <div class="field">
-     <%= f.label :otp %><br />
-     <%= f.text_field :otp, autofocus: true, placeholder: "xxxx" %>
+     <%= form.label :otp %><br />
+     <%= form.text_field :otp, autofocus: true, placeholder: "xxxx" %>
    </div>
+   <%= form.submit "Submit" %>
    <% end %>
  </div>
+
  <div class="modal-footer">
    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-   <button class="btn btn-primary">Submit</button>
-   <%= link_to "Submit", user_sign_up_user_id_otp_path(resource_name) %>
  </div>

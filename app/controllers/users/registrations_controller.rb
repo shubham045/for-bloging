@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :user_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
+  include Verify
 
   def new
     super
@@ -12,8 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], mobile: params[:user][:mobile])
-    # @user.saveshow
+    country_code, mobile_number = params[:user][:mobile].split('-')
+    # @response = valid_phone_number?(country_code, mobile_number)
+    @response = true
+    @user = User.new(user_params)
+    @some = @user
     respond_to do |format|
       format.js
     end
@@ -47,12 +51,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def user_params
+    params.require(:user).permit(:name, :email, :mobile, :password, :password_confirmation, :otp)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

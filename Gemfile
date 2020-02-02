@@ -14,9 +14,10 @@ gem 'puma', '~> 4.1'
 gem 'pry'
 
 gem 'devise'
+gem 'bootstrap_form', '~> 4.3'
 
 gem 'authy'
-# gem 'bootstrap'
+
 gem 'bootstrap-sass'
 gem 'sassc-rails'
 gem 'jquery-rails'
