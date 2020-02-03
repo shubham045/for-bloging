@@ -2,19 +2,17 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :user_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
-  # GET /resource/sign_up
+  
   include Verify
 
   def new
     @user = User.new
   end
 
-  # # POST /resource
   def create
     country_code, mobile_number = params[:user][:mobile].split('-')
     @response = valid_phone_number?(country_code, mobile_number)
-    @user = User.new(user_params)
+    @user = User.create(user_params)
     respond_to do |format|
       format.js
     end
@@ -22,7 +20,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def otp_verification
     country_code, mobile_number = params[:user][:mobile].split('-')
-    response = valid_confirmation_code?(code, country_code, phone_number)
+    otp_code = params[:user][:otp]
+    response = valid_confirmation_code?(otp_code, country_code, mobile_number)
+    unless response == true 
+      user = User.find(params[:user_id])
+      user.destroy
+    end
   end
 
   # GET /resource/edit
@@ -51,23 +54,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  def user_params
-    params.require(:user).permit(:name, :email, :mobile, :password, :password_confirmation, :otp)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :mobile, :password, :password_confirmation, :otp)
+    end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end

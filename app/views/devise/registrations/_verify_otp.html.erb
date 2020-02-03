@@ -2,7 +2,8 @@
    <h3 id="myModalLabel">Modal header</h3>
  </div>
  <div class="modal-body">
-  <%= form_for(:anything, url: verify_user_otp_path(@user)) do |form| %>
+  <% binding.pry %>
+  <%= form_for(@user, url: verify_user_otp_path(@user), method: :post) do |form| %>
 
    <div class="field">
      <%= form.label :mobile %><br />
