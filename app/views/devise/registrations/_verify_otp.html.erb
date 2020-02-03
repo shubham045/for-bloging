@@ -2,7 +2,7 @@
    <h3 id="myModalLabel">Modal header</h3>
  </div>
  <div class="modal-body">
-  <%= form_for(@user, url: verify_user_otp_path(@user), method: :post) do |form| %>
+  <%= form_for(@user, url: verify_user_otp_path(@user), remote: true, method: :post, class: 'otp-form') do |form| %>
 
    <div class="field">
      <%= form.label :mobile %><br />
@@ -12,8 +12,12 @@
    <div class="field">
      <%= form.label :otp %><br />
      <%= form.text_field :otp, autofocus: true, placeholder: "xxxx" %>
+     <div class='otp-error-container'>
+      <span>cant' be blank</span>
+     </div>
    </div>
-   <%= form.submit "Submit" %>
+
+   <%= link_to 'submit', 'javascript:void(0)', class: 'submit-otp-btn' %>
    <% end %>
  </div>
 

@@ -7,7 +7,6 @@ module Verify
 
   def valid_confirmation_code?(code, country_code, phone_number)
     response = Authy::PhoneVerification.check(verification_code: code, country_code: country_code, phone_number: phone_number)
-    binding.pry
     response.success?
   end
 

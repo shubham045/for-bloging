@@ -10,9 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    country_code, mobile_number = params[:user][:mobile].split('-')
-    # @response = valid_phone_number?(country_code, mobile_number)
-    @response = true
     @user = User.new(user_params)
     @user.save
     respond_to do |format|
@@ -22,8 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def otp_verification
     country_code, mobile_number = params[:user][:mobile].split('-')
-    otp_code = params[:user][:otp]
-    response = valid_confirmation_code?(otp_code, country_code, mobile_number)
+    @otp_code = params[:user][:otp]
+    response = valid_confirmation_code?(@otp_code, country_code, mobile_number)
     unless response == true 
       user = User.find(params[:user_id])
       user.destroy
