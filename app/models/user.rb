@@ -9,25 +9,25 @@ class User < ApplicationRecord
   validates :mobile, presence: true
   validates :email, presence: true
 
-  # before_validation :check_mobile_number
+  before_validation :check_mobile_number
 
-  # validate :check_any_error
+  validate :check_any_error
 
-  # private
-  #
-  #   def check_any_error
-  #     if errors.any?
-  #       errors.add(:user, "something is wrong")
-  #     end
-  #   end
-  #
-  # 	def check_mobile_number
-  #     if mobile.present?
-  #       country_code, mobile_number = mobile.split('-')
-  #       unless valid_phone_number?(country_code, mobile_number)
-  #         errors.add(:mobile, "Your mobile number is invalid")
-  #       end
-  #     end
-  # 	end
+  private
+  
+    def check_any_error
+      if errors.any?
+        errors.add(:base, "something is wrong")
+      end
+    end
+
+  	def check_mobile_number
+      if mobile.present?
+        country_code, mobile_number = mobile.split('-')
+        unless valid_phone_number?(country_code, mobile_number)
+          errors.add(:mobile, "Your mobile number is invalid")
+        end
+      end
+  	end
 
 end

@@ -11,8 +11,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     country_code, mobile_number = params[:user][:mobile].split('-')
-    @response = valid_phone_number?(country_code, mobile_number)
-    @user = User.create(user_params)
+    # @response = valid_phone_number?(country_code, mobile_number)
+    @response = true
+    @user = User.new(user_params)
+    @user.save
     respond_to do |format|
       format.js
     end
@@ -25,6 +27,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless response == true 
       user = User.find(params[:user_id])
       user.destroy
+    else
+      redirect_to new_user_session_path, notice: "SignIN to continuing"
     end
   end
 

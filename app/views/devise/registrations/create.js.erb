@@ -1,4 +1,6 @@
-<% if @response == true %> 
+<% unless @response == false || @user.errors.any? %> 
   $("#modal-window").find(".modal-content").html("<%= j (render 'verify_otp') %>");
   $("#modal-window").modal('show');
+<% else %>
+	$('.error-container').html("<%= j (render 'devise/shared/error_messages', :locals => {:resource => @user}) %>")
 <% end %>
