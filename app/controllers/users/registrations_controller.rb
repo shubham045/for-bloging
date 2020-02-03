@@ -7,23 +7,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include Verify
 
   def new
-    user = User.new
+    @user = User.new
   end
 
   # # POST /resource
   def create
     country_code, mobile_number = params[:user][:mobile].split('-')
-    # @response = valid_phone_number?(country_code, mobile_number)
-    @response = true
+    @response = valid_phone_number?(country_code, mobile_number)
     @user = User.new(user_params)
-    @some = @user
     respond_to do |format|
       format.js
     end
   end
 
   def otp_verification
-    binding.pry
+    country_code, mobile_number = params[:user][:mobile].split('-')
+    response = valid_confirmation_code?(code, country_code, phone_number)
   end
 
   # GET /resource/edit

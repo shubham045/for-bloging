@@ -2,7 +2,8 @@
    <h3 id="myModalLabel">Modal header</h3>
  </div>
  <div class="modal-body">
-  <%= form_for(:anything, url: verify_user_otp_path) do |form| %>
+  <%= form_for(:anything, url: verify_user_otp_path(@user)) do |form| %>
+
    <div class="field">
      <%= form.label :mobile %><br />
      <%= form.text_field :mobile, autofocus: true, placeholder: "+91-9009458216", :readonly => true %>
