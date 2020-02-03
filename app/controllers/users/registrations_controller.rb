@@ -2,7 +2,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :user_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  
+
   include Verify
 
   def new
@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     country_code, mobile_number = params[:user][:mobile].split('-')
     @otp_code = params[:user][:otp]
     response = valid_confirmation_code?(@otp_code, country_code, mobile_number)
-    unless response == true 
+    unless response == true
       user = User.find(params[:user_id])
       user.destroy
     else
