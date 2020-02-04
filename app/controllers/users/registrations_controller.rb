@@ -10,15 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    @user = User.new(user_params)
-    @user.save
+    @user = User.create(user_params)
     respond_to do |format|
       format.js
     end
   end
 
   def otp_verification
-    binding.pry
     country_code, mobile_number = params[:user][:mobile].split('-')
     @otp_code = params[:user][:otp]
     response = valid_confirmation_code?(@otp_code, country_code, mobile_number)
