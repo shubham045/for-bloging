@@ -8,7 +8,7 @@ class User < ApplicationRecord
   attr_accessor :otp
   validates :mobile, presence: true
   validates :email, presence: true
-  # validates :otp, presence: true
+  
   before_validation :check_mobile_number
 
   private
